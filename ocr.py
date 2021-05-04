@@ -10,7 +10,7 @@ from pathlib import Path
 from google.cloud import vision
 from tqdm import tqdm
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 LINE_BREAKS_PATTERN = r"([\w\s,])(?:\n)"
 FIRST_WORD = re.compile(r'((?<=[\.\?!]\s)(\w+)|(?<=\")(\w+)|(^\w+))', flags=re.MULTILINE)  # noqa: E501
