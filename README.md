@@ -31,7 +31,7 @@ Quand vous aurez récupérer votre clé au format .json, il faudra la placer dan
 
 ## Installation
 
-- Télécharger la dernière release (à droite : last release  
+- Télécharger la dernière release (En haut à droite : [Releases](https://github.com/Sergeileduc/ocr-tool/releases)  
 Télécharger le fichier `ocr.zip`
 
 - Dézippez le fichier à l'endroit de votre choix. (`D:\bin`, `C:\mes-scripts`, etc...)
