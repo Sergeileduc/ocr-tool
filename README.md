@@ -13,7 +13,7 @@ Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un 
 
 ## Prérequis
 
-Il vous faut une clé API pour l'API Google Vision (il faut mettre un numéro de CB, rassurez-vous, 1000 images par mois sont gratuites.)
+Il vous faut une clé API pour l'API Google Vision (il faut mettre un numéro de CB, rassurez-vous, 1000 images par mois sont gratuites. PS : heu quand je dis qu'il faut mettre la CB, c'est pas pour moi hein ! 😂. C'est juste l'API Google, après, c'est VOTRE compte API, et c'est VOUS qui gérez (vous avez 1000 pages gratuites par mois, donc normalement ça va.)
 
 Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié à MA CB), donc il vous faudra suivre le tutoriel de Google ici :
 
