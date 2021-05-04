@@ -8,6 +8,9 @@ import tkinter.scrolledtext as scrolledtext
 from pathlib import Path
 
 from google.cloud import vision
+from tqdm import tqdm
+
+__version__ = "0.0.1"
 
 LINE_BREAKS_PATTERN = r"([\w\s,])(?:\n)"
 FIRST_WORD = re.compile(r'((?<=[\.\?!]\s)(\w+)|(?<=\")(\w+)|(^\w+))', flags=re.MULTILINE)  # noqa: E501
@@ -102,7 +105,7 @@ if input_.is_dir():
     output = ""
     ext = ['.png', '.jpg', '.jpeg']
     img_list = [i for i in sorted(input_.glob('**/*')) if i.suffix in ext]
-    for count, page in enumerate(img_list, start=1):
+    for count, page in enumerate(tqdm(img_list), start=1):
         output += f"Page {count}\n\n"
         page_content = detect_document(page)
         output += page_content + "\n\n"

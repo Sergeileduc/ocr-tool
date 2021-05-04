@@ -111,3 +111,6 @@ ENV/
 /*.jpg
 /*.html
 foo.py
+
+# other
+/roots.pem

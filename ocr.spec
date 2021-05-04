@@ -4,11 +4,13 @@
 block_cipher = None
 
 
-a = Analysis(['main.spec'],
-             pathex=['C:\\Users\\serge\\Dev\\ocr-tool'],
+a = Analysis(['ocr.py'],
+             pathex=['C:\\Users\\serge\\Dev\\OCR-vision\\ocr-tool'],
              binaries=[],
              datas=[('roots.pem', 'grpc/_cython/_credentials/'),],
-             hiddenimports=["tkinter", "tkinter.scrolledtext", "google", "google.cloud", "google.cloud.vision"],
+             hiddenimports=["tkinter", "tkinter.scrolledtext",
+                            "google", "google.cloud", "google.cloud.vision",
+                            "tqdm"],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -22,12 +24,13 @@ exe = EXE(pyz,
           a.scripts,
           [],
           exclude_binaries=True,
-          name='main',
+          name='ocr',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=True )
+          console=True,
+          icon='C:\\Users\\serge\\Dev\\OCR-vision\\ocr-tool\\ico.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
@@ -35,4 +38,4 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                upx_exclude=[],
-               name='main')
+               name='ocr')

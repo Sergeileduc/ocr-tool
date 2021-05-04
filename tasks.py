@@ -96,6 +96,12 @@ def cleanbuild(c):
     builds = chain(gen1, gen2, gen3)
     for b in builds:
         shutil.rmtree(b)
+    # Delete pem file
+    # Delete coverage artifacts
+    try:
+        os.remove('roots.pem')
+    except FileNotFoundError:
+        pass
 
 
 @task(cleantest, cleanbuild)
@@ -125,4 +131,7 @@ def clean(c):
 @task(cleanbuild)
 def build(c):
     """pyinstaller build."""
-    c.run('pyinstaller --windowed main.spec')
+    c.run('wget -o roots.pem https://raw.githubusercontent.com/grpc/grpc/master/etc/roots.pem',
+          shell='C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe')
+    # c.run('pyinstaller --windowed main.spec')
+    c.run('pyinstaller ocr.spec')
