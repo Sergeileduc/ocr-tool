@@ -4,9 +4,9 @@
 
 Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un dossier d'image.
 
-Exemple :
+### Exemple :  
 
-IMAGE Gif de l'outil
+![demo](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/Animation.gif)  
 
 - 1 image
 - 1 dossier
@@ -21,7 +21,7 @@ Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié 
 
 (Vous n'avez besoin de faire que les étapes 1 et 2.)
 
-IMAGE de google
+![Google API](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/google.png)
 
 Quand vous aurez récupérer votre clé au format .json, il faudra la placer dans le dossier `.config` de votre repertoir utilisateur, et la nommer `google.json` (si le dossier `.config` de votre répertoire utilisateur n'existe pas, créez le, puis collez-y votre fichier `google.json`)
 
@@ -35,11 +35,11 @@ Télécharger le fichier `ocr.zip`
 - Créer le raccourci dans `Clic-droit -> Envoyer vers` :  
 `Win + R`  
 `shell:SendTo`  
-IMAGE send shell to  
+![SenTO](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/shellsend.png)  
 Clic-droit "Nouveau raccourci"  
 Parcourir jusqu'à `ocr.exe`  
 Nommer le raccourci comme on veut.  
-IMAGE parcourir
+![Browser](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/parcourir.jpg) 
 
 ## Enjoy
 
