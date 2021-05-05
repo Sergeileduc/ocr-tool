@@ -21,7 +21,7 @@ C'est donc sécurisé.
 
 Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié à MA CB), donc il vous faudra suivre le tutoriel de Google ici :
 
-<https://discord.com/channels/@me/643080755509198858/838348149822193674>
+<https://cloud.google.com/vision/docs/ocr>
 
 (Vous n'avez besoin de faire que les étapes 1 et 2.)
 
