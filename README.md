@@ -4,7 +4,7 @@
 
 Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un dossier d'image.
 
-### Exemple :  
+### Exemple  
 
 ![demo](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/Animation.gif)  
 
@@ -27,6 +27,8 @@ Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié 
 
 ![Google API](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/google.png)
 
+Alors ça vous demande un carte bancaire, mais vous avez le droit à 1000 images gratuites par mois (donc ça va).
+
 Quand vous aurez récupérer votre clé au format .json, il faudra la placer dans le dossier `.config` de votre repertoir utilisateur, et la nommer `google.json` (si le dossier `.config` de votre répertoire utilisateur n'existe pas, créez le, puis collez-y votre fichier `google.json`)
 
 ## Installation
@@ -38,11 +40,11 @@ Télécharger le fichier `ocr.zip`
 
 - Créer le raccourci dans `Clic-droit -> Envoyer vers` :  
 `Win + R`  
-`shell:SendTo`  
+`shell:SendTo` -> OK  
 ![SenTO](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/shellsend.png)  
 Clic-droit "Nouveau raccourci"  
 Parcourir jusqu'à `ocr.exe`  
 Nommer le raccourci comme on veut.  
-![Browser](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/parcourir.jpg) 
+![Browser](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/parcourir.jpg)  
 
 ## Enjoy

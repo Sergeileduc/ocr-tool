@@ -80,6 +80,8 @@ def detect_document(path):
         logger.debug("SENTENCE CASES :\n%s", page)
 
         return page
+    else:
+        return ""
 
 
 # Select all the text in textbox
@@ -98,27 +100,45 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(credentials)
 # Input (either a file or a folder)
 input_ = Path(sys.argv[1]).resolve()
 
-if input_.is_file():
-    output = detect_document(input_)
+print(f"Le programme va traiter le fichier/dossier : {str(input_)}")
 
-if input_.is_dir():
-    output = ""
-    ext = ['.png', '.jpg', '.jpeg']
-    img_list = [i for i in sorted(input_.glob('**/*')) if i.suffix in ext]
-    for count, page in enumerate(tqdm(img_list), start=1):
-        output += f"Page {count}\n\n"
-        page_content = detect_document(page)
-        output += page_content + "\n\n"
 
-root = tk.Tk()
-root.title("Reconnaissance de texte")
+try:
+    if input_.is_file():
+        if input_.suffix.lower() in ['.cbz' '.cbr', '.cbz']:
+            print("Le programme ne traite que des fichiers individuels (jpg, etc...) ou des dossiers.\n"
+              "Pas les archives .cbz ou .cbr")
+            input("Appuyer sur une touche pour quitter.")
+            sys.exit()
+        else:
+            print("Détection d'un fichier")
+            output = detect_document(input_)
 
-text_widget = scrolledtext.ScrolledText(root, width=150)
-text_widget.insert(tk.END, output)
-text_widget.pack(expand=True, fill='both')
+    elif input_.is_dir():
+        print("Détection d'un dossier.")
+        output = ""
+        ext = ['.png', '.jpg', '.jpeg']
+        img_list = [i for i in sorted(input_.glob('**/*')) if i.suffix.lower() in ext]  # noqa: E501
+        for count, page in enumerate(tqdm(img_list), start=1):
+            output += f"Page {count}\n\n"
+            page_content = detect_document(page)
+            output += page_content + "\n\n"
+    else:
+        print(f"Erreur avec l'input suivante : {str(input_)}")
+        sys.exit()
 
-# Add the binding
-text_widget.bind("<Control-Key-a>", select_all)
-text_widget.bind("<Control-Key-A>", select_all)  # just in case caps lock is on  # noqa: E501
+    root = tk.Tk()
+    root.title("Reconnaissance de texte")
 
-tk.mainloop()
+    text_widget = scrolledtext.ScrolledText(root, width=150)
+    text_widget.insert(tk.END, output)
+    text_widget.pack(expand=True, fill='both')
+
+    # Add the binding
+    text_widget.bind("<Control-Key-a>", select_all)
+    text_widget.bind("<Control-Key-A>", select_all)  # just in case caps lock is on  # noqa: E501
+
+    tk.mainloop()
+except Exception as e:
+    print(e)
+    input("Appuyer sur une touche pour quitter")
