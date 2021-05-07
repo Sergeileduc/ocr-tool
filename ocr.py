@@ -117,7 +117,7 @@ try:
     elif input_.is_dir():
         print("Détection d'un dossier.")
         output = ""
-        ext = ['.png', '.jpg', '.jpeg']
+        ext = ['.png', '.jpg', '.jpeg', '.webp']
         img_list = [i for i in sorted(input_.glob('**/*')) if i.suffix.lower() in ext]  # noqa: E501
         for count, page in enumerate(tqdm(img_list), start=1):
             output += f"Page {count}\n\n"
