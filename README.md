@@ -29,7 +29,7 @@ Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié 
 
 Alors ça vous demande un carte bancaire, mais vous avez le droit à 1000 images gratuites par mois (donc ça va).
 
-Quand vous aurez récupérer votre clé au format .json, il faudra la placer dans le dossier `.config` de votre repertoir utilisateur, et la nommer `google.json` (si le dossier `.config` de votre répertoire utilisateur n'existe pas, créez le, puis collez-y votre fichier `google.json`)
+Quand vous aurez récupérer votre clé au format .json, il faudra la placer dans le dossier `.config` de votre repertoir utilisateur, et la nommer `google.json` (si le dossier `.config` de votre répertoire utilisateur n'existe pas, créez le (donc chez moi, j'ai donc le dossier `C:\Users\sergei\.config`, puis collez-y votre fichier `google.json`)
 
 ## Installation
 
