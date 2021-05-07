@@ -47,4 +47,8 @@ Parcourir jusqu'à `ocr.exe`
 Nommer le raccourci comme on veut.  
 ![Browser](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/parcourir.jpg)  
 
+## :exclamation:  Attention
+
+Dûe au sens de lecture parfois un peu alambiqué (en zig-zag) des BD et comics, il se peut que l'ordre de certaines bulles soit inversé (ou que des bulles se retrouvent collées, etc...)... Donc il faut vérifier.
+
 ## Enjoy
