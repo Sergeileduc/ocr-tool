@@ -39,7 +39,7 @@ En gros les étapes sont :
 - Toujours dans le menu Hamburger : API et Services
 - `+ Activer les API et les services`
 - Google Vision API -> Activer
-- Et pour la facturation (même si on a 1000 images gratuites/mois, un compte de facturation est quand même demandé, c'est dans le menu hamburger, encore une fois -> Facturation
+- Et pour la facturation (même si on a 1000 images gratuites/mois, un compte de facturation est quand même demandé, c'est dans le menu hamburger, encore une fois -> Facturation)
 
 Alors ça vous demande un carte bancaire, mais vous avez le droit à 1000 images gratuites par mois (donc ça va).
 
