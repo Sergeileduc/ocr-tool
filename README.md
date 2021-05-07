@@ -8,7 +8,7 @@ Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un 
 
 ![demo](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/Animation.gif)  
 
-- 1 image
+- 1 image (formats *.jpg, *.png et *.webp)
 - 1 dossier
 
 ## Prérequis
