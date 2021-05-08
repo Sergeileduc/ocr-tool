@@ -45,6 +45,8 @@ Alors ça vous demande un carte bancaire, mais vous avez le droit à 1000 images
 
 Quand vous aurez récupérer votre clé au format .json, il faudra la placer dans le dossier `.config` de votre repertoir utilisateur, et la nommer `google.json` (si le dossier `.config` de votre répertoire utilisateur n'existe pas, créez le (donc chez moi, j'ai donc le dossier `C:\Users\sergei\.config`), puis collez-y votre fichier `google.json`)
 
+Et enfin, si ça vous énerve de voir ce dossier `.config` à cotés de vos dossiers "Mes Documents" "Vidéos", etc..., vous pouvez totalement le cacher (clic droit -> Propriétés -> Caché) (d'ailleurs, le `.` en début de nom dans `.config`, ça vient du monde Linux ou par convention, les trucs qui commencent par `.` sont automatiquement cachés...)
+
 ## Installation
 
 - Télécharger la dernière release (En haut à droite : [Releases](https://github.com/Sergeileduc/ocr-tool/releases))  
