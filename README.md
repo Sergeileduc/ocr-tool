@@ -1,17 +1,27 @@
 # OCR tool pour windows (utilisant Google vision)
 
-## Présentation de l'outil
+## Présentation des outils
+
+Il y a 2 outils :
+
+### ocr
 
 Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un dossier d'image.
+
+### ocrtrad
+
+Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un dossier d'image (la première image n'est pas traitée), et traduire le texte en français.
 
 ### Exemple  
 
 ![demo](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/Animation.gif)  
 
 - 1 image (formats *.jpg, *.png et *.webp)
-- 1 dossier
+- 1 dossier (sans la 1ère image de cover)
 
 ## Prérequis
+
+### Google Vision
 
 Il vous faut une clé API pour l'API Google Vision (il faut mettre un numéro de CB, rassurez-vous, 1000 images par mois sont gratuites.  
 PS : heu quand je dis qu'il faut mettre la CB, c'est pas pour moi hein ! 😂, c'est pour Google).  
@@ -47,21 +57,49 @@ Quand vous aurez récupérer votre clé au format .json, il faudra la placer dan
 
 Et enfin, si ça vous énerve de voir ce dossier `.config` à cotés de vos dossiers "Mes Documents" "Vidéos", etc..., vous pouvez totalement le cacher (clic droit -> Propriétés -> Caché) (d'ailleurs, le `.` en début de nom dans `.config`, ça vient du monde Linux ou par convention, les trucs qui commencent par `.` sont automatiquement cachés...)
 
+### DeepL API
+
+Pour l'outil `ocrtrad` de reconnaissance de texte + la traduction DeepL, il vous faudra récupérer une clé d'API Deepl.
+
+[DeepL API](https://www.deepl.com/fr/pro-api?cta=header-pro-api/)
+
+Prendre la version gratuite. (Il vous faut quand même une CB, il me semble).
+
+Récupérer la clé d'API. (ça ressmeble à 5d954132-g0tt-6b7d......)
+
 ## Installation
 
 - Télécharger la dernière release (En haut à droite : [Releases](https://github.com/Sergeileduc/ocr-tool/releases))  
-Télécharger le fichier `ocr.zip`
+  - Télécharger le fichier `ocr.zip` pour la reconnaissance de caractère seulement.
+  - Télécharger le fichier `ocrtrad.zip` pour la reconnaissance ET la traduction.
 
 - Dézippez le fichier à l'endroit de votre choix. (`D:\bin`, `C:\mes-scripts`, etc...)
 
 - Créer le raccourci dans `Clic-droit -> Envoyer vers` :  
 `Win + R`  
 `shell:SendTo` -> OK  
-![SenTO](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/shellsend.png)  
+![SenTO](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/shellsend.png)
 Clic-droit "Nouveau raccourci"  
-Parcourir jusqu'à `ocr.exe`  
+Parcourir jusqu'à `ocr.exe` ou `ocrtrad.exe`
 Nommer le raccourci comme on veut.  
-![Browser](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/parcourir.jpg)  
+![Browser](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/parcourir.jpg)
+
+### Pour ocrtrad seulement
+
+Enfin, dans le dossier qui contient le porgramme .exe, vous trouverez un fichier nommé `.env`
+
+Ouvrez le avec un éditeur de texte (bloc note, etc...)
+
+Editez le fichier en mettant votre clé d'API DeepL
+(donc `DEEPL=5d954132-g0tt-6b7d......`)
+
+## En cas de problème
+
+Le programme n'étant pas signé par éditeur, Windows Smart Screen peut s'activer :
+![smartscreen](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/smartscreen.jpg)
+
+Vous pouvez forcer l'éxecution :
+![smartscreen2](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/smartscreen2.jpg)
 
 ## :exclamation:  Attention
 
