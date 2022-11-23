@@ -12,7 +12,7 @@ import deepl
 from tqdm import tqdm
 from dotenv import load_dotenv
 
-__version__ = "0.0.4"
+__version__ = "0.1.0"
 
 # Parse a .env file and then load all the variables found as environment variables.
 load_dotenv()
