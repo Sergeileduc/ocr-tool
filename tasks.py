@@ -86,11 +86,12 @@ def cleantest(c):
 
 
 @task
-def cleanbuild(c):
+def cleanbuildocr(c):
     """Clean dist/, build/ and egg-info/."""
     exclude = ('venv', '.venv')
     p = Path('.')
-    gen1 = (i for i in p.glob('**/dist') if not str(i.parent).startswith(exclude))
+    tool = "ocr"
+    gen1 = (i for i in p.glob(f'**/dist/{tool}') if not str(i.parent).startswith(exclude))
     gen2 = (i for i in p.glob('**/build') if not str(i.parent).startswith(exclude))
     gen3 = (i for i in p.glob('**/*.egg-info') if not str(i.parent).startswith(exclude))
     builds = chain(gen1, gen2, gen3)
@@ -104,7 +105,39 @@ def cleanbuild(c):
         pass
 
 
-@task(cleantest, cleanbuild)
+@task
+def cleanbuildoctrad(c):
+    """Clean dist/, build/ and egg-info/."""
+    exclude = ('venv', '.venv')
+    p = Path('.')
+    tool = "ocrtrad"
+    gen1 = (i for i in p.glob(f'**/dist/{tool}') if not str(i.parent).startswith(exclude))
+    gen2 = (i for i in p.glob('**/build') if not str(i.parent).startswith(exclude))
+    gen3 = (i for i in p.glob('**/*.egg-info') if not str(i.parent).startswith(exclude))
+    builds = chain(gen1, gen2, gen3)
+    for b in builds:
+        shutil.rmtree(b)
+    # Delete pem file
+    # Delete coverage artifacts
+    try:
+        os.remove('roots.pem')
+    except FileNotFoundError:
+        pass
+
+
+@task(cleantest, cleanbuildocr)
+def cleanocr(c):
+    """Equivalent to both cleanbuild and cleantest..."""
+    pass
+
+
+@task(cleantest, cleanbuildoctrad)
+def cleanoctrad(c):
+    """Equivalent to both cleanbuild and cleantest..."""
+    pass
+
+
+@task(cleantest, cleanbuildocr, cleanbuildoctrad)
 def clean(c):
     """Equivalent to both cleanbuild and cleantest..."""
     pass
@@ -128,10 +161,41 @@ def clean(c):
 #     webbrowser.open(path.as_uri())
 
 
-@task(cleanbuild)
-def build(c):
-    """pyinstaller build."""
-    c.run('wget -o roots.pem https://raw.githubusercontent.com/grpc/grpc/master/etc/roots.pem',
-          shell='C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe')
-    # c.run('pyinstaller --windowed main.spec')
-    c.run('pyinstaller ocr.spec')
+# @task(cleanbuild)
+# def build(c):
+#     """pyinstaller build."""
+#     c.run('wget -o roots.pem https://raw.githubusercontent.com/grpc/grpc/master/etc/roots.pem',
+#           shell='C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe')
+#     # c.run('pyinstaller --windowed main.spec')
+#     c.run('pyinstaller ocr.spec')
+
+@task(cleanocr)
+def buildocr(c):
+    """Build with pyinstaller (Windows)"""
+    tool = "ocr.py"
+    print("Build with pyinstaller")
+    c.run(f"pyinstaller --icon ico.ico --clean --log-level=WARN {tool}")  # noqa:E501
+    path = Path(__file__).parent
+    src = path / ".env.public"
+    dist = path / "dist"
+    dst = dist / "ocr" / ".env"
+    print("copy dist .env")
+    shutil.copy(src, dst)
+    print("making a zip")
+    shutil.make_archive(dist / "ocr", "zip", dist, "ocr")
+
+
+@task(cleanbuildoctrad)
+def buildoctrad(c):
+    """Build with pyinstaller (Windows)"""
+    tool = "ocrtrad"
+    print("Build with pyinstaller")
+    c.run(f"pyinstaller --icon ico.ico --clean --log-level=WARN {tool}.py")  # noqa:E501
+    path = Path(__file__).parent
+    src = path / ".env.public"
+    dist = path / "dist"
+    dst = dist / tool / ".env"
+    print("copy dist .env")
+    shutil.copy(src, dst)
+    print("making a zip")
+    shutil.make_archive(dist / tool, "zip", dist, tool)
