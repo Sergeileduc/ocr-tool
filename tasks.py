@@ -199,3 +199,11 @@ def buildoctrad(c):
     shutil.copy(src, dst)
     print("making a zip")
     shutil.make_archive(dist / tool, "zip", dist, tool)
+
+
+@task()
+def release(c, version="patch"):
+    """Build and release. Optional parameter is "patch (default) / version=minor / version=major"""  # noqa: E501
+    c.run(f"bump2version {version}")
+    c.run("git push")
+    c.run("git push --tags")
