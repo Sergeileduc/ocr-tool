@@ -12,12 +12,12 @@ import deepl
 from tqdm import tqdm
 from dotenv import load_dotenv
 
+__version__ = "0.0.4"
+
 # Parse a .env file and then load all the variables found as environment variables.
 load_dotenv()
 deepltoken = os.getenv("DEEPL")
 # Done
-
-__version__ = "0.0.4"
 
 LINE_BREAKS_PATTERN = r"([\w\s,])(?:\n)"
 FIRST_WORD = re.compile(r'((?<=[\.\?!]\s)(\w+)|(?<=\")(\w+)|(^\w+))', flags=re.MULTILINE)  # noqa: E501
