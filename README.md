@@ -10,13 +10,13 @@ Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un 
 
 ### ocrtrad
 
-Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un dossier d'image (la première image n'est pas traitée), et traduire le texte en français.
+Vous pouvez faire de la reconnaissance de texte dans une image seule, ou sur un dossier d'image, et traduire le texte en français.
 
 ### Exemple  
 
 ![demo](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/Animation.gif)  
 
-- 1 image (formats *.jpg, *.png et *.webp)
+- 1 image (formats *.jpg*, *.png* et *.webp*)
 - 1 dossier (sans la 1ère image de cover)
 
 ## Prérequis
