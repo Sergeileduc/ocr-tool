@@ -12,7 +12,7 @@ import deepl
 from tqdm import tqdm
 from dotenv import load_dotenv
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 logger = logging.getLogger(__name__)
 # Parse a .env file and then load all the variables found as environment variables.
