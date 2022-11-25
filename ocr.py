@@ -32,7 +32,7 @@ def remove_multiple_spaces(longstring):
 
 
 def cap(match):
-    return(match.group().capitalize())
+    return (match.group().capitalize())
 
 
 # def sentence_case(text):
@@ -107,7 +107,7 @@ try:
     if input_.is_file():
         if input_.suffix.lower() in ['.cbz' '.cbr', '.cbz']:
             print("Le programme ne traite que des fichiers individuels (jpg, etc...) ou des dossiers.\n"
-              "Pas les archives .cbz ou .cbr")
+                  "Pas les archives .cbz ou .cbr")
             input("Appuyer sur une touche pour quitter.")
             sys.exit()
         else:

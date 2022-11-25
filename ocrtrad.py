@@ -14,15 +14,18 @@ from dotenv import load_dotenv
 
 __version__ = "0.1.0"
 
+logger = logging.getLogger(__name__)
 # Parse a .env file and then load all the variables found as environment variables.
 load_dotenv()
+user = Path("~").expanduser()
+# GOOGLE Credentials
+credentials = user / ".config" / "google.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(credentials)
+# DeepL
 deepltoken = os.getenv("DEEPL")
-# Done
 
 LINE_BREAKS_PATTERN = r"([\w\s,])(?:\n)"
 FIRST_WORD = re.compile(r'((?<=[\.\?!]\s)(\w+)|(?<=\")(\w+)|(^\w+))', flags=re.MULTILINE)  # noqa: E501
-
-logger = logging.getLogger(__name__)
 
 
 def no_ext(filename):
@@ -91,6 +94,14 @@ def detect_document(path):
         return ""
 
 
+# Select all the text in textbox
+def select_all(event):
+    text_widget.tag_add(tk.SEL, "1.0", tk.END)
+    text_widget.mark_set(tk.INSERT, "1.0")
+    text_widget.see(tk.INSERT)
+    return 'break'
+
+
 def translate_text(text: str) -> str:
     """Translate text using Deepl API.
 
@@ -105,66 +116,104 @@ def translate_text(text: str) -> str:
     return result.text
 
 
-# Select all the text in textbox
-def select_all(event):
-    text_widget.tag_add(tk.SEL, "1.0", tk.END)
-    text_widget.mark_set(tk.INSERT, "1.0")
-    text_widget.see(tk.INSERT)
-    return 'break'
+# main functions :
+def translate_file(path):
+    if path.suffix.lower() in ['.cbz' '.cbr', '.cbz']:
+        print("Le programme ne traite que des fichiers individuels (jpg, etc...) ou des dossiers.\n"
+              "Pas les archives .cbz ou .cbr")
+        input("Appuyer sur une touche pour quitter.")
+        sys.exit()
+
+    print("Détection d'un fichier")
+    text_vo = detect_document(path)
+    try:
+        output = translate_text(text_vo)
+        return output
+    except ValueError as e:
+        print("Value Error")
+        print(e)
+        if str(e) == "text must not be empty":
+            print("¨Page vide")
+            input("Appuyer sur une touche pour quitter.")
+            sys.exit(1)
+        elif str(e) == "auth_key must not be empty":
+            print("problème avec fichier .env")
+            input("Appuyer sur une touche pour quitter.")
+            sys.exit(1)
+        else:
+            raise
+    except deepl.exceptions.DeepLException as e:
+        print("deepl Exception :")
+        print(e)
+        input("Appuyer sur une touche pour quitter.")
+        sys.exit(1)
 
 
-# GOOGLE Credentials
-user = Path("~").expanduser()
-credentials = user / ".config" / "google.json"
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(credentials)
+def translate_folder(path):
+    print("Détection d'un dossier.")
+    output = ""
+    ext = ['.png', '.jpg', '.jpeg', '.webp']
+    img_list = [i for i in sorted(path.glob('**/*')) if i.suffix.lower() in ext]  # noqa: E501
 
+    for count, page in enumerate(tqdm(img_list), start=1):
+        print("")
+        output += f"Page {count}\n\n"
+        page_vo = detect_document(page)
+        try:
+            page_vf = translate_text(page_vo)
+        except ValueError as e:
+            print("Value Error")
+            print(e)
+            if str(e) == "text must not be empty":
+                print("¨Page vide")
+                page_vf = ""
+                pass
+            elif str(e) == "auth_key must not be empty":
+                print("problème avec fichier .env")
+                input("Appuyer sur une touche pour quitter.")
+                sys.exit(1)
+            else:
+                raise
+        except deepl.exceptions.DeepLException as e:
+            print("deepl Exception :")
+            print(e)
+            input("Appuyer sur une touche pour quitter.")
+            sys.exit(1)
+        output += page_vf + "\n\n"
+    return output
+
+
+def check_usage():
+    translator = deepl.Translator(deepltoken)
+    usage = translator.get_usage()
+    return usage
+
+
+# MAIN program here
 # Input (either a file or a folder)
 input_ = Path(sys.argv[1]).resolve()
-
 print(f"Le programme va traiter le fichier/dossier : {str(input_)}")
 
-
 try:
+    usage = check_usage()
+    usage = check_usage()
+    print("DeepL usage :")
+    print(f"Vous avez utilisé {(count := usage.character.count):,} sur {(limit := usage.character.limit):,} mots.")
+    print(f"Votre ratio d'usage DeepLest de {count/limit:.2%}")
+    print(f"Votre API est {'valide' if usage.character.valid else 'invalide'}")
+    print(f"{'Vous avez dépassé la limite' if usage.character.limit_reached else 'Limite pas encore dépassée.'}")
+
     if input_.is_file():
-        if input_.suffix.lower() in ['.cbz' '.cbr', '.cbz']:
-            print("Le programme ne traite que des fichiers individuels (jpg, etc...) ou des dossiers.\n"
-                  "Pas les archives .cbz ou .cbr")
-            input("Appuyer sur une touche pour quitter.")
-            sys.exit()
-        else:
-            print("Détection d'un fichier")
-            text_vo = detect_document(input_)
-            try:
-                output = translate_text(text_vo)
-            except ValueError as e:
-                if str(e) == "text must not be empty":
-                    print("¨Page vide")
-                    page_vf = ""
+        output = translate_file(input_)
 
     elif input_.is_dir():
-        print("Détection d'un dossier, sans la 1ère page.")
-        output = ""
-        ext = ['.png', '.jpg', '.jpeg', '.webp']
-        img_list = [i for i in sorted(input_.glob('**/*'))[1:] if i.suffix.lower() in ext]  # noqa: E501
-
-        for count, page in enumerate(tqdm(img_list), start=2):
-            output += f"Page {count}\n\n"
-            page_vo = detect_document(page)
-            try:
-                page_vf = translate_text(page_vo)
-            except ValueError as e:
-                if str(e) == "text must not be empty":
-                    print("¨Page vide")
-                    page_vf = ""
-                    pass
-            finally:
-                output += page_vf + "\n\n"
+        output = translate_folder(input_)
     else:
         print(f"Erreur avec l'input suivante : {str(input_)}")
         sys.exit()
 
     root = tk.Tk()
-    root.title("Reconnaissance de texte")
+    root.title("Reconnaissance de texte et traduction")
 
     text_widget = scrolledtext.ScrolledText(root, width=150)
     text_widget.insert(tk.END, output)
@@ -176,5 +225,6 @@ try:
 
     tk.mainloop()
 except Exception as e:
+    print("MAIN PROGRAM try except")
     print(e)
     input("Appuyer sur une touche pour quitter")
