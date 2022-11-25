@@ -172,21 +172,23 @@ def clean(c):
 @task(cleanocr)
 def buildocr(c):
     """Build with pyinstaller (Windows)"""
-    tool = "ocr.py"
+    tool = "ocr"
     print("Build with pyinstaller")
-    c.run(f"pyinstaller --icon ico.ico --clean --log-level=WARN {tool}")  # noqa:E501
+    c.run(f"pyinstaller --icon ico.ico --clean --log-level=WARN {tool}.py")  # noqa:E501
     path = Path(__file__).parent
-    src = path / ".env.public"
     dist = path / "dist"
-    dst = dist / "ocr" / ".env"
-    print("copy dist .env")
-    shutil.copy(src, dst)
+    print("cleaning zip")
+    zip_ = Path(__file__).parent / "dist" / f"{tool}.zip"
+    try:
+        os.remove(zip_)
+    except FileNotFoundError:
+        pass
     print("making a zip")
-    shutil.make_archive(dist / "ocr", "zip", dist, "ocr")
+    shutil.make_archive(dist / tool, "zip", dist, tool)
 
 
 @task(cleanbuildoctrad)
-def buildoctrad(c):
+def buildocrtrad(c):
     """Build with pyinstaller (Windows)"""
     tool = "ocrtrad"
     print("Build with pyinstaller")
@@ -197,6 +199,12 @@ def buildoctrad(c):
     dst = dist / tool / ".env"
     print("copy dist .env")
     shutil.copy(src, dst)
+    print("cleaning zip")
+    zip_ = Path(__file__).parent / "dist" / f"{tool}.zip"
+    try:
+        os.remove(zip_)
+    except FileNotFoundError:
+        pass
     print("making a zip")
     shutil.make_archive(dist / tool, "zip", dist, tool)
 
