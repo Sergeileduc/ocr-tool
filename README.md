@@ -65,7 +65,10 @@ Notez là dans un document bloc-note.
 
 ## Installation
 
-- Télécharger la dernière release (En haut à droite : [Releases](https://github.com/Sergeileduc/ocr-tool/releases))  
+- Télécharger la dernière release (ici: [Releases](https://github.com/Sergeileduc/ocr-tool/releases))
+(C'est également à droite, dans github) :
+![releases](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/releases.png)
+
   - Télécharger le fichier `ocr.zip` pour la reconnaissance de caractère seulement.
   - Télécharger le fichier `ocrtrad.zip` pour la reconnaissance ET la traduction.
 
