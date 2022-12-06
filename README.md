@@ -29,13 +29,8 @@ C'est juste l'API Google, après, c'est VOTRE compte API (vous avez 1000 pages g
 Je n'ai évidemment pas accès à votre compte (ni vous au mien).
 C'est donc sécurisé.
 
-Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié à MA CB), donc il vous faudra suivre le tutoriel de Google ici :
-
-<https://cloud.google.com/vision/docs/ocr>
-
-(Vous n'avez besoin de faire que les étapes 1 et 2.)
-
-![Google API](https://raw.githubusercontent.com/Sergeileduc/ocr-tool/master/ressources/doc/google.png)
+Je ne peux pas vous fournir ma clé API pour des raisons évidentes (c'est lié à MA CB), donc il vous faudra suivre le tutoriel suivant disponible en version détaillée avec screenshots ici :
+[Tutoriel pas-à-pas](https://scribehow.com/shared/Google_Console_pas_a_pas__eomM3rHsQ1Oh5xfllorpYA)
 
 En gros les étapes sont :
 
@@ -66,6 +61,7 @@ Pour l'outil `ocrtrad` de reconnaissance de texte + la traduction DeepL, il vous
 Prendre la version gratuite. (Il vous faut quand même une CB, il me semble).
 
 Récupérer la clé d'API. (ça ressmeble à 5d954132-g0tt-6b7d......)
+Notez là dans un document bloc-note.
 
 ## Installation
 
